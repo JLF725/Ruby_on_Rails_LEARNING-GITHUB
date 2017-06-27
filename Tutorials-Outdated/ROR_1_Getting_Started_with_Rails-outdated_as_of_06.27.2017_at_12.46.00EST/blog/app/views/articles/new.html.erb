@@ -1,0 +1,62 @@
+<!-- JLF:  We created this page in response to the error message generated after we added text in the articles_controller.rb -->
+<h1>New Article</h1>	
+
+<!-- JLF:  Adding the above text causes 'New Article' to render at http://localhost:3000/articles/new -->
+
+<!-- JLF:  We use a form builder to create a form within this template.   The primary form builder for Rails is provided by a helper method called form_for.  -->
+<!-- JLF:  To use the helper method called form_for, which is the primary form builder for Rails, I'm adding the following code: -->
+
+<%= form_for :article, url: articles_path do |f| %>
+	<p>
+		<%= f.label :title %><br>
+		<%= f.text_field :title %>
+	</p>
+
+	<p>
+		<%= f.label :text %><br>
+		<%= f.text_area :text %>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>
+
+<!-- WHEN CALLING form_for, I'M PASSING IT AN IDENTIFYING OBJECT FOR THIS FORM.  IN THIS CASE, IT'S THE SYMBOL :article.  THIS TELLS THE form_for HELPER WHAT THE FORM IS FOR. -->
+<!-- Inside the block for this method, the FormBuilder object - represented by f - is used to build two labels and two text fields, one each for the title and text of an article.   -->
+<!-- A call to submit on the f object will create a submit button for the form. -->
+
+<!-- The form needs a different URl to go somewhere else - this can be done with the :url option of form_for.  Typically, the action that's used for new form submissions like this is called "create", and so the form should be pointed to that action.  Edit the form_for line in the file as written above.
+
+
+<!-- NOW I'M ADDING TWO LINE BREAKS, AND THEN THE FLYJETS SEARCH BAR TO DEMO THAT I CAN EFFECTIVELY USE REGULAR HTML/CSS WITH RUBY/RAILS.  THIS IS not PART OF THE TUTORIAL. -->
+
+<BR>
+<BR>
+
+			<div class="search_bar">
+				<form action="/" id="search_bar_form" method="POST">
+				<!-- action="/someURLToProcessInfo" -->
+					<!-- <input type ="hidden" name="_method" value="PUT">  -->
+					<!-- in order to send PUT request -->
+					<!-- In form box for (1) TAKE OFF and (2) LAND, see 'Location' in grey; on user input, this changes to drop-down of locations/airports/camps/bases associated with location entered -->
+					<span>TAKE OFF</span><input class="take_off" type="text" name="take_off" placeholder="LOCATION">
+					<!-- change type="text" back to type="drop-down" once locations table is pulled in as API -->
+					<span>LAND</span><input class="land" type="text" name="land" placeholder="LOCATION">
+					<!-- change type="text" back to type="drop-down" once locations table is pulled in as API -->
+					<!-- Calendars for FROM and TO -->
+					<span>FROM</span><input class="from" type="date" name="from_date">
+					<span>TO</span><input class="to" type="date" name="to_date">
+					<!-- Number entry for NUMBER OF PASSENGERS -->
+					<span>NUMBER OF PASSENGERS</span><input class="number_of_passengers" type="text" name="num_passengers"></br>
+					<!-- Radio Button: -->
+					<span>BOOK AIRCRAFT</span><input class="book_aircraft" type="checkbox" name="aircraft"><!-- <br> -->
+					<!-- Radio Button: -->
+					<span class="book_seats">BOOK SEATS</span class="book_seats"><input class="book_seats" type="checkbox" name="seats">
+					<div class="go">
+						<button class="go" type="submit" value="submit" onclick= "goButtonSubmitFunction()">GO</button> 
+					</div class="go">
+				</form action="/" id="search_bar_form" method="POST">
+				<a href="/all">SEE SEARCH REQUESTS LOG</a>
+				<!-- (Reference 2) -->
+			</div class="search_bar">
